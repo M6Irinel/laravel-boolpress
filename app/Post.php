@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 
@@ -67,4 +68,10 @@ class Post extends Model
 
         return $slug;
     }
+
+    public function getCoverPathAttribute(){
+        return $this->image ? Storage::url($this->image) : null;
+    }
+
+    protected $appends = ['cover_path'];
 }
