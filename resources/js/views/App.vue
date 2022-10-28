@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-100vh flex f-column">
-        <header-vue :headerParams="headerParams"  />
-        <main-vue :mainParams="mainParams" />
+        <header-vue :headerParams="headerParams" />
+        <main-vue :mainParams="mainParams" @page="fetchPosts" />
         <footer-vue />
     </div>
 </template>
@@ -27,6 +27,9 @@ export default {
             },
             mainParams: {
                 posts: [],
+                last_page: 0,
+                total: 0,
+                current_page: 1
             }
         }
     },
@@ -35,7 +38,10 @@ export default {
         fetchPosts ( page = 1 ) {
             axios.get( '/api/posts', { params: { page: page } } )
                 .then( r => {
-                    const { data } = r.data.result;
+                    const { data, last_page, total, current_page } = r.data.result;
+                    this.mainParams.last_page = last_page;
+                    this.mainParams.total = total;
+                    this.mainParams.current_page = current_page;
                     this.mainParams.posts = data;
                 } )
         }
