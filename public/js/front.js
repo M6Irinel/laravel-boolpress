@@ -1921,6 +1921,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+// @ts-nocheck
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     headerParams: Object
@@ -15692,7 +15693,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Boolean\laravel-api\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Boolean\laravel-boolpress\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

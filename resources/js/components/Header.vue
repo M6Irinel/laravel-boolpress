@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// @ts-nocheck
 export default {
     props: {
         headerParams: Object
