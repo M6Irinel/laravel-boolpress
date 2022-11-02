@@ -1,9 +1,11 @@
 <template>
     <main class="py-6 grow">
         <div class="container flex f-column h-100">
-            <ul class="list-style-none grid-12 gap-20">
-                <card-vue v-for="post in mainParams.posts" :key="post.id" :post="post" />
-            </ul>
+            <div class="list-style-none grid-12 gap-20">
+                <router-link class="g-col-4 shadow-2-light" :to="{name: 'posts.show', params: {slug: post.slug}}" v-for="(post, i) in mainParams.posts" :key="post.id">
+                    <card-vue :post="post" :id="i" />
+                </router-link>
+            </div>
             <ul class="mt-auto list-style-none flex gap-12 pt-5 pb-2 center">
                 <li :class="{
                     'pointer bg-gray-3-H bg-gray-1 l': true,

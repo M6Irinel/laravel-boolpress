@@ -10,6 +10,7 @@
 <script>
 // @ts-nocheck
 import AppVue from '../views/App.vue';
+import store from '../store/store';
 
 export default {
     name: 'HeaderVue',
@@ -20,5 +21,12 @@ export default {
             routes: this.$router.options.routes
         }
     },
+
+    created () {
+        if ( store.one ) {
+            this.routes.pop();
+            store.one = false;
+        }
+    }
 }
 </script>

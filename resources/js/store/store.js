@@ -5,7 +5,8 @@ export default reactive( {
         last_page: 0,
         total: 0,
         current_page: 1
-    }
+    },
+    one: true
 } );
 // import Vue from 'vue'
 // export default Vue.observable( {

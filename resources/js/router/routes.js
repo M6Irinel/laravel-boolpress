@@ -3,6 +3,7 @@ import HomeVue from '../pages/Home.vue';
 import PostsVue from '../pages/Posts.vue';
 import ChiSiamo from '../pages/ChiSiamo.vue';
 import Contatti from '../pages/Contatti.vue';
+import Show from '../pages/Show.vue';
 
 export default [
     {
@@ -24,5 +25,10 @@ export default [
         path: '/contatti',
         name: 'contact-us',
         component: Contatti
+    },
+    {
+        path: '/blog/:slug',
+        name: 'posts.show',
+        component: Show
     },
 ]

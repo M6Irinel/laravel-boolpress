@@ -38,9 +38,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $result = Post::where('slug', $slug)->with('category', 'tags')->get();
+        $status = true;
+
+        return response()->json(compact('result', 'status'));
     }
 
     /**
