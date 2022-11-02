@@ -1,23 +1,15 @@
 <template>
-    <div class="min-h-100vh flex f-column">
-        <header-vue :headerParams="headerParams" />
-        <main-vue :mainParams="mainParams" @page="fetchPosts" />
-        <footer-vue />
+    <div>
+        <router-view />
     </div>
 </template>
 
 
 <script>
 // @ts-nocheck
-import HeaderVue from '../components/Header.vue';
-import MainVue from '../components/Main.vue';
-import FooterVue from '../components/Footer.vue';
+import store from '../store/store';
 
 export default {
-    name: 'AppVue',
-
-    components: { HeaderVue, MainVue, FooterVue },
-
     data () {
         return {
             headerParams: {
@@ -25,12 +17,12 @@ export default {
                 adminPostsIndex: adminPostsIndex,
                 forLogin: forLogin
             },
-            mainParams: {
-                posts: [],
-                last_page: 0,
-                total: 0,
-                current_page: 1
-            }
+            // mainParams: {
+            //     posts: [],
+            //     last_page: 0,
+            //     total: 0,
+            //     current_page: 1
+            // }
         }
     },
 
@@ -39,15 +31,15 @@ export default {
             axios.get( '/api/posts', { params: { page: page } } )
                 .then( r => {
                     const { data, last_page, total, current_page } = r.data.result;
-                    this.mainParams.last_page = last_page;
-                    this.mainParams.total = total;
-                    this.mainParams.current_page = current_page;
-                    this.mainParams.posts = data;
-                } )
+                    store.mainParams.last_page = last_page;
+                    store.mainParams.total = total;
+                    store.mainParams.current_page = current_page;
+                    store.mainParams.posts = data;
+                } );
         }
     },
 
-    beforeMount () {
+    created () {
         this.fetchPosts();
     }
 }

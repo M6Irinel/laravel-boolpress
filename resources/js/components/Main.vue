@@ -8,18 +8,29 @@
                 <li :class="{
                     'pointer bg-gray-3-H bg-gray-1 l': true,
                     'bg-orange': page == mainParams.current_page,
-                }" v-for="page in mainParams.last_page" :key="page" @click="$emit('page', page)">{{ page }}</li>
+                }" v-for="page in mainParams.last_page" :key="page" @click="newPage(page)">{{ page }}</li>
             </ul>
         </div>
     </main>
 </template>
 
 <script>
+// @ts-nocheck
 import CardVue from './mini/card.vue';
+import store from '../store/store';
+import AppVue from '../views/App.vue';
 
 export default {
-    props: {
-        mainParams: Object
+    computed: {
+        mainParams () {
+            return store.mainParams;
+        }
+    },
+
+    methods: {
+        newPage ( post ) {
+            AppVue.methods.fetchPosts( post );
+        }
     },
 
     components: { CardVue },
