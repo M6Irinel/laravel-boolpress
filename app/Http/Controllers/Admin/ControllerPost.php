@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 use App\Post;
 use App\Category;
 use App\Mail\SendPostCreatedMail;
@@ -51,7 +49,7 @@ class ControllerPost extends Controller
     {
         $params = Post::validate_for_create($request);
 
-        if(array_key_exists('image', $params)){
+        if (array_key_exists('image', $params)) {
             $params['image'] = Storage::put('uploads', $params['image']);
         }
 
@@ -105,9 +103,9 @@ class ControllerPost extends Controller
     public function update(Request $request, Post $post)
     {
         $params = Post::validate_for_update($request, $post);
-        
-        if(array_key_exists('image', $params)){
-            if($post->image && Storage::exists($post->image)){
+
+        if (array_key_exists('image', $params)) {
+            if ($post->image && Storage::exists($post->image)) {
                 Storage::delete($post->image);
             }
             $params['image'] = Storage::put('uploads', $params['image']);
@@ -139,7 +137,7 @@ class ControllerPost extends Controller
 
         $post->delete();
 
-        if($img && Storage::exists($img)){
+        if ($img && Storage::exists($img)) {
             Storage::delete($img);
         }
 

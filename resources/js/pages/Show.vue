@@ -1,5 +1,5 @@
 <template>
-    <div class="flex f-column min-h-100vh">
+    <div v-if="result" class="flex f-column min-h-100vh">
         <header-vue />
         <div class="container">
             <h1 class="py-3">{{  result.title  }}</h1>
@@ -27,7 +27,7 @@ export default {
 
     data () {
         return {
-            result: {}
+            result: null
         }
     },
 
@@ -35,9 +35,11 @@ export default {
         fetchPost () {
             axios.get( `/api/posts/${ this.$route.params.slug }` )
                 .then( j => {
-                    this.result = j.data.result[ 0 ];
-                    console.log( this.result );
-                } )
+                    this.result = j.data.result;
+                } ).catch( e => {
+                    if(e.response.status === 404)
+                        this.$router.replace( { name: 'not-found' } );
+                } );
         }
     },
 
