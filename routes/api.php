@@ -19,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::resource('posts', 'Api\PostController')->only(['index', 'show']);
+
+Route::post('email', 'Api\EmailController@store')->name('email');

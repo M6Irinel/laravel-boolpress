@@ -4,6 +4,7 @@ import PostsVue from '../pages/Posts.vue';
 import ChiSiamo from '../pages/ChiSiamo.vue';
 import Contatti from '../pages/Contatti.vue';
 import Show from '../pages/Show.vue';
+import NotFound from '../pages/NotFound.vue';
 
 export default [
     {
@@ -31,4 +32,9 @@ export default [
         name: 'posts.show',
         component: Show
     },
+    {
+        path: '*',
+        name: 'not-found',
+        component: NotFound
+    }
 ]

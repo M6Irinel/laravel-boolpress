@@ -25,6 +25,7 @@ export default {
     created () {
         if ( store.one ) {
             this.routes.pop();
+            this.routes.pop();
             store.one = false;
         }
     }
